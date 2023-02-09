@@ -9,10 +9,13 @@ long double roundTo(long double value, double precision);
 using namespace std;
 
 int main() {
+    int k;
 
-        RAPID::Trig::precompute();
+    RAPID::Trig::precompute();
 
-        cout << RAPID::Trig::O1Sin(2);
+    cout << RAPID::Trig::O1Sin(6) << "\n";
+    cout << sin(6);
+    cin >> k;
 //    double x = 0;
 //    while(true) {
 //        cout << "Enter x: ";

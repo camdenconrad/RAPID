@@ -9,7 +9,7 @@
 
 namespace RAPID {
     //6248
-        auto compSin = new long double[6248];
+        auto compSin = new long double[628319];
 
         static long double exp(double x, int ex) {
             double total = x;
@@ -108,9 +108,9 @@ namespace RAPID {
     void Trig::precompute() {
             long double x = 0;
 
-            for (int i = 0; i < 6248; i++) {
+            for (int i = 0; i < 628319; i++) {
                 compSin[i] = sin(x);
-                x += 0.001;
+                x += 0.00001;
             }
         }
         long double Trig::O1Sin(double x) {
@@ -120,7 +120,7 @@ namespace RAPID {
             while (x > 6.248 && x > 0) {
                 x -= std::numbers::pi;
             }
-            return compSin[(int) (x * 1000)];
+            return compSin[(int) (x * 100000)];
         }
 
 
