@@ -3,6 +3,8 @@
 #include "Trig.h"
 
 
+double roundTo(long double sin, double d);
+
 using namespace std;
 
 int main() {
@@ -13,8 +15,15 @@ int main() {
         cout << endl;
 //
 //    while (x < 4 * numbers::pi) {
-        cout << "Rapid Sin of " << x << ": " << RAPID::Trig::RapidSin(x) << "\n";
-        cout << "CPP Sin of " << x << ": " << sin(x) << "\n";
+        double rV = roundTo(RAPID::Trig::RapidSin(x), 0.0001);
+        double cV = roundTo(sin(x), 0.0001);
+
+        cout << "Rapid Sin of " << x << ": " << rV << "\n";
+        cout << "CPP   Sin of " << x << ": " << cV << "\n";
+
+        double difference = (abs(rV - cV) / ((rV + cV) / 2)) * 100;
+
+        printf("Percent Difference = %.2f \%\n", difference);
     }
 //
 //        long double accuracy = RAPID::Trig::RapidSin(x) - sin(x);
@@ -29,4 +38,9 @@ int main() {
     //}
 
     return 0;
+}
+
+double roundTo(long double value, double precision)
+{
+    return std::round(value / precision) * precision;
 }

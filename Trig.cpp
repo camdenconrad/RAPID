@@ -45,7 +45,7 @@ namespace RAPID {
 
             long double total = x;
 
-            for (int i = 3; i < 100; i += 4) {
+            for (int i = 3; i < 15; i += 4) {
 
 
                 long double diff = (-1 * ((exp(x, i)) / (factorial(i)))) + ((exp(x, i + 2)) / (factorial(i + 2)));
