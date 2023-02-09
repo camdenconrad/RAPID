@@ -1,9 +1,9 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include "Trig.h"
 
 
-double roundTo(long double sin, double d);
+long double roundTo(long double value, double precision);
 
 using namespace std;
 
@@ -15,17 +15,25 @@ int main() {
         cout << endl;
 //
 //    while (x < 4 * numbers::pi) {
-        double rV = roundTo(RAPID::Trig::RapidSin(x), 0.0001);
-        double cV = roundTo(sin(x), 0.0001);
+        long double rV = roundTo(RAPID::Trig::RapidSin(x), 0.0001);
+        long double cV = roundTo(sin(x), 0.0001);
 
         cout << "Rapid Sin of " << x << ": " << rV << " Rads\n";
         cout << "CPP   Sin of " << x << ": " << cV << " Rads\n";
 
         cout << "In degrees: " << rV * (180./numbers::pi) << endl;
 
-        double difference = (abs(rV - cV) / ((rV + cV) / 2)) * 100;
+        long double difference = (abs(rV - cV) / ((rV + cV) / 2)) * 100;
 
-        printf("Percent Difference = %.2f \%\n", difference);
+        printf("Percent Difference = %.2Lf \%\n\n", difference);
+
+        long double rC = roundTo(RAPID::Trig::RapidCos(x), 0.0001);
+        long double cC = roundTo(cos(x), 0.0001);
+
+        cout << "Rapid Cos of " << x << ": " << rC << " Rads\n";
+        cout << "CPP   Cos of " << x << ": " << cC << " Rads\n";
+
+
     }
 //
 //        long double accuracy = RAPID::Trig::RapidSin(x) - sin(x);
@@ -42,7 +50,7 @@ int main() {
     return 0;
 }
 
-double roundTo(long double value, double precision)
+long double roundTo(long double value, double precision)
 {
     return std::round(value / precision) * precision;
 }

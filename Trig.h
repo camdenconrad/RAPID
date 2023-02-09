@@ -10,6 +10,8 @@ namespace RAPID {
 
     public:
         static long double RapidSin(double x);
+
+        static long double RapidCos(double x);
     };
 
 } // RAPID

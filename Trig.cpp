@@ -65,4 +65,40 @@ namespace RAPID {
 
         }
 
+        long double Trig::RapidCos(double x) {
+
+            int moves = 0;
+
+            if (x > std::numbers::pi || x < 0) {
+                while(x > std::numbers::pi) {
+                    x -= std::numbers::pi;
+                    moves++;
+                }
+                while(x < 0) {
+                    x += std::numbers::pi;
+                    moves--;
+                }
+            }
+
+            long double total = 1;
+
+            for (int i = 2; i < 15; i += 4) {
+
+
+                long double diff = (-1 * ((exp(x, i)) / (factorial(i)))) + ((exp(x, i + 2)) / (factorial(i + 2)));
+
+                if(isnan(diff) || isinf(diff)) {
+                    break;
+                }
+                total += diff;
+            }
+
+            if( abs(moves) % 2 == 0 ) {
+                return total;
+            }
+            else {
+                return -1 * total;
+            }
+        }
+
 } // RAPID
