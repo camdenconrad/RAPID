@@ -18,8 +18,10 @@ int main() {
         double rV = roundTo(RAPID::Trig::RapidSin(x), 0.0001);
         double cV = roundTo(sin(x), 0.0001);
 
-        cout << "Rapid Sin of " << x << ": " << rV << "\n";
-        cout << "CPP   Sin of " << x << ": " << cV << "\n";
+        cout << "Rapid Sin of " << x << ": " << rV << " Rads\n";
+        cout << "CPP   Sin of " << x << ": " << cV << " Rads\n";
+
+        cout << "In degrees: " << rV * (180./numbers::pi) << endl;
 
         double difference = (abs(rV - cV) / ((rV + cV) / 2)) * 100;
 

@@ -49,6 +49,7 @@ namespace RAPID {
 
 
                 long double diff = (-1 * ((exp(x, i)) / (factorial(i)))) + ((exp(x, i + 2)) / (factorial(i + 2)));
+
                 if(isnan(diff) || isinf(diff)) {
                     break;
                 }
