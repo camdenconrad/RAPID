@@ -16,6 +16,10 @@ namespace RAPID {
         static void precompute();
 
         static double O1Sin(double x);
+
+        virtual ~Trig();
+
+        static void release();
     };
 
 } // RAPID

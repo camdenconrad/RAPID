@@ -7,8 +7,14 @@
 #include <numbers>
 
 namespace RAPID {
+
+
     //6248
-    auto compSin = new double[628319];
+    auto sins = new double[628319];
+
+    void Trig::release() {
+        free(sins);
+    }
 
     static long double exp(double x, int ex) {
         double total = x;
@@ -108,7 +114,7 @@ namespace RAPID {
         while (x > 6.248 && x > 0) {
             x -= std::numbers::pi;
         }
-        return compSin[(int) (x * 100000)];
+        return sins[(int) (x * 100000)];
     }
 
 
@@ -116,7 +122,7 @@ namespace RAPID {
         double x = 0;
 
         for (int i = 0; i < 628319; i++) {
-            compSin[i] = RapidSin(x);
+            sins[i] = RapidSin(x);
             x += 0.00001;
         }
 

@@ -25,7 +25,7 @@ int main() {
 
     begin = std::chrono::high_resolution_clock::now();
     for(int z = 0; z < 1000000; z++) {
-        for (int i = -2 * numbers::pi; i < 16 * numbers::pi; i++) {
+        for (int i = -16 * numbers::pi; i < 16 * numbers::pi; i++) {
             Trig::O1Sin(i);
             //cout << Trig::O1Sin(i) << endl;
         }
@@ -39,7 +39,7 @@ int main() {
 
     begin = std::chrono::high_resolution_clock::now();
     for(int z = 0; z < 1000000; z++) {
-        for (int i = -2 * numbers::pi; i < 16 * numbers::pi; i++) {
+        for (int i = -16 * numbers::pi; i < 16 * numbers::pi; i++) {
             sin(i);
             //cout << sin(i) << endl;
         }
@@ -51,6 +51,11 @@ int main() {
 
     printf("Percent difference: %.2Lf\%\n", difference(timeOne, timeTwo));
     printf("Percent difference: %.2Lfx faster\n", timeTwo/timeOne);
+
+    Trig::release();
+
+    string k;
+    cin >> k;
 
     //cin >> k;
 //    double x = 0;
