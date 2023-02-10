@@ -11,9 +11,11 @@ namespace RAPID {
 
     //6248
     auto sins = new double[628319];
+    auto coss = new double[628319];
 
     void Trig::release() {
         free(sins);
+        free(coss);
     }
 
     static long double exp(double x, int ex) {
@@ -107,7 +109,7 @@ namespace RAPID {
         }
     }
 
-    double Trig::O1Sin(double x) {
+    double Trig::RSin(double x) {
         while (x < 0 && x < 6.248) {
             x += std::numbers::pi;
         }
@@ -117,12 +119,29 @@ namespace RAPID {
         return sins[(int) (x * 100000)];
     }
 
+    double Trig::RCos(double x) {
+        while (x < 0 && x < 6.248) {
+            x += std::numbers::pi;
+        }
+        while (x > 6.248 && x > 0) {
+            x -= std::numbers::pi;
+        }
+        return coss[(int) (x * 100000)];
+    }
+
 
     void Trig::precompute() {
         double x = 0;
 
         for (int i = 0; i < 628319; i++) {
             sins[i] = RapidSin(x);
+            x += 0.00001;
+        }
+
+        x = 0;
+
+        for (int i = 0; i < 628319; i++) {
+            coss[i] = RapidCos(x);
             x += 0.00001;
         }
 
