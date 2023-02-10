@@ -15,7 +15,7 @@ namespace RAPID {
 
         static void precompute();
 
-        static long double O1Sin(double x);
+        static double O1Sin(double x);
     };
 
 } // RAPID

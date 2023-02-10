@@ -1,10 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <numbers>
+#include <chrono>
 #include "Trig.h"
 
 
 long double roundTo(long double value, double precision);
+
+long double difference(long double x, long double y);
 
 using namespace std;
 using namespace RAPID;
@@ -12,26 +15,41 @@ using namespace RAPID;
 int main() {
     //int k;
 
+    auto begin = std::chrono::high_resolution_clock::now();
     RAPID::Trig::precompute();
 
-    auto begin = std::chrono::high_resolution_clock::now();
-    for(int i = 0; i < 2 * numbers::pi; i += 1) {
-        Trig::O1Sin(i);
-    }
-    for(int i = 0; i < 2 * numbers::pi; i += 1) {
-        Trig::O1Sin(i);
-    }
-
     auto end = std::chrono::high_resolution_clock::now();
-    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << " ns" << std::endl;
+    std::cout << "Setup time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << " ns" << std::endl;
+
+    long double timeOne = std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count();
 
     begin = std::chrono::high_resolution_clock::now();
-    for(int i = 0; i < 2 * numbers::pi; i += 1) {
-        sin(i);
+    for(int z = 0; z < 5000; z++) {
+        for (int i = -2 * numbers::pi; i < 16 * numbers::pi; i++) {
+            Trig::O1Sin(i);
+            //cout << Trig::O1Sin(i) << endl;
+        }
     }
+
 
     end = std::chrono::high_resolution_clock::now();
     std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << " ns" << std::endl;
+
+    long double timeTwo = std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count();
+
+    begin = std::chrono::high_resolution_clock::now();
+    for(int z = 0; z < 5000; z++) {
+        for (int i = -2 * numbers::pi; i < 16 * numbers::pi; i++) {
+            sin(i);
+            //cout << sin(i) << endl;
+        }
+    }
+
+
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << " ns" << std::endl;
+
+    printf("Percent difference: %.2Lf\%\n", difference(timeOne, timeTwo));
 
     //cin >> k;
 //    double x = 0;
@@ -49,7 +67,6 @@ int main() {
 //
 //        cout << "In degrees: " << rV * (180./numbers::pi) << endl;
 //
-//        long double difference = (abs(rV - cV) / ((rV + cV) / 2)) * 100;
 //
 //        printf("Percent Difference = %.2Lf \%\n\n", difference);
 //
@@ -76,10 +93,16 @@ int main() {
 
     //}
 
+
     return 0;
 }
 
 long double roundTo(long double value, double precision)
 {
     return std::round(value / precision) * precision;
+}
+
+long double difference(long double x, long double y) {
+
+    return (abs(x - y) / ((x + y) / 2)) * 100;
 }
