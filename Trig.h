@@ -9,6 +9,8 @@ namespace RAPID {
     class Trig {
 
     public:
+        Trig();
+
         static long double RapidSin(double x);
 
         static long double RapidCos(double x);

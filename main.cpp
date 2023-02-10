@@ -19,7 +19,8 @@ int main() {
     RAPID::Trig::precompute();
 
     auto end = std::chrono::high_resolution_clock::now();
-    std::cout << "Setup time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count() << " ms" << std::endl;
+    std::cout << "Setup time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms"
+              << std::endl;
 
     begin = std::chrono::high_resolution_clock::now();
 //    for(int z = 0; z < 5000000; z++) {
@@ -32,9 +33,9 @@ int main() {
 
 
     end = std::chrono::high_resolution_clock::now();
-    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count());
+    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count());
 
-    long double timeOne = std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count();
+    long double timeOne = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
 
     begin = std::chrono::high_resolution_clock::now();
 //    for(int z = 0; z < 5000000; z++) {
@@ -47,12 +48,12 @@ int main() {
 
 
     end = std::chrono::high_resolution_clock::now();
-    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count());
+    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count());
 
-    long double timeTwo = std::chrono::duration_cast<std::chrono::milliseconds>(end-begin).count();
+    long double timeTwo = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
 
     printf("Percent difference: %.2Lf\%\n", difference(timeOne, timeTwo));
-    printf("Percent difference: %.2Lfx faster\n", timeTwo/timeOne);
+    printf("Percent difference: %.2Lfx faster\n", timeTwo / timeOne);
 
     Trig::release();
 
@@ -85,7 +86,7 @@ int main() {
 //        cout << "CPP   Tan of " << x << ": " << tan(x) << endl;
 
 
-   // }
+    // }
 //
 //        long double accuracy = RAPID::Trig::RapidSin(x) - sin(x);
 //        //cout << accuracy << endl;
@@ -94,7 +95,7 @@ int main() {
 //            break;
 //        }
 
-        //x += 0.0000001;
+    //x += 0.0000001;
 
     //}
 
@@ -102,8 +103,7 @@ int main() {
     return 0;
 }
 
-long double roundTo(long double value, double precision)
-{
+long double roundTo(long double value, double precision) {
     return std::round(value / precision) * precision;
 }
 

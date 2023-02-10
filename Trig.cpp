@@ -13,6 +13,7 @@ namespace RAPID {
     auto sins = new double[628319];
     auto coss = new double[628319];
 
+
     void Trig::release() {
         free(sins);
         free(coss);
@@ -146,5 +147,15 @@ namespace RAPID {
         }
 
 
-    } // RAPID
+    }
+
+    Trig::~Trig() {
+        free(sins);
+        free(coss);
+    }
+
+    Trig::Trig() {
+        precompute();
+    }
+    // RAPID
 }
