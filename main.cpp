@@ -7,15 +7,33 @@
 long double roundTo(long double value, double precision);
 
 using namespace std;
+using namespace RAPID;
 
 int main() {
-    int k;
+    //int k;
 
     RAPID::Trig::precompute();
 
-    cout << RAPID::Trig::O1Sin(6) << "\n";
-    cout << sin(6);
-    cin >> k;
+    auto begin = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i < 2 * numbers::pi; i += 1) {
+        Trig::O1Sin(i);
+    }
+    for(int i = 0; i < 2 * numbers::pi; i += 1) {
+        Trig::O1Sin(i);
+    }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << " ns" << std::endl;
+
+    begin = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i < 2 * numbers::pi; i += 1) {
+        sin(i);
+    }
+
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() << " ns" << std::endl;
+
+    //cin >> k;
 //    double x = 0;
 //    while(true) {
 //        cout << "Enter x: ";
