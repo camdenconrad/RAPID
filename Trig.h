@@ -17,13 +17,13 @@ namespace RAPID {
 
         static void precompute();
 
-        static double RSin(double x);
+        static float RSin(double x);
 
         virtual ~Trig();
 
         static void release();
 
-        double RCos(double x);
+        static double RCos(double x);
     };
 
 } // RAPID

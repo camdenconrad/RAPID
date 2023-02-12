@@ -13,51 +13,53 @@ using namespace std;
 using namespace RAPID;
 
 int main() {
-    //int k;
 
-    auto begin = std::chrono::high_resolution_clock::now();
+//
+//    auto begin = std::chrono::high_resolution_clock::now();
     RAPID::Trig::precompute();
 
-    auto end = std::chrono::high_resolution_clock::now();
-    std::cout << "Setup time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms"
-              << std::endl;
-
-    begin = std::chrono::high_resolution_clock::now();
-//    for(int z = 0; z < 5000000; z++) {
+    cout << Trig::RSin(1) / Trig::RCos(1) << endl;
+    cout << tan(1) << endl;
+//
+//    auto end = std::chrono::high_resolution_clock::now();
+//    std::cout << "Setup time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms"
+//              << std::endl;
+//
+//    begin = std::chrono::high_resolution_clock::now();
+//    for(int z = 0; z < 1000000; z++) {
 //        for (int i = -16 * numbers::pi; i < 16 * numbers::pi; i++) {
 //            Trig::RSin(i);
 //            //cout << Trig::O1Sin(i) << endl;
 //        }
 //    }
-    Trig::RSin(2 * numbers::pi);
-
-
-    end = std::chrono::high_resolution_clock::now();
-    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count());
-
-    long double timeOne = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
-
-    begin = std::chrono::high_resolution_clock::now();
-//    for(int z = 0; z < 5000000; z++) {
+////    Trig::RSin(numbers::pi);
+//
+//
+//    end = std::chrono::high_resolution_clock::now();
+//    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count());
+//
+//    long double timeOne = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+//
+//    begin = std::chrono::high_resolution_clock::now();
+//    for(int z = 0; z < 1000000; z++) {
 //        for (int i = -16 * numbers::pi; i < 16 * numbers::pi; i++) {
 //            sin(i);
 //            //cout << sin(i) << endl;
 //        }
 //    }
-    sin(2 * numbers::pi);
+////    sin(numbers::pi);
+//
+//    end = std::chrono::high_resolution_clock::now();
+//    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count());
+//
+//    long double timeTwo = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+//
+//    printf("Percent difference: %.2Lf\%\n", difference(timeOne, timeTwo));
+//    printf("Percent difference: %.2Lfx faster\n", timeTwo / timeOne);
 
-
-    end = std::chrono::high_resolution_clock::now();
-    printf("%lld ms\n", std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count());
-
-    long double timeTwo = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
-
-    printf("Percent difference: %.2Lf\%\n", difference(timeOne, timeTwo));
-    printf("Percent difference: %.2Lfx faster\n", timeTwo / timeOne);
-
-    Trig::release();
-
-    //cin >> k;
+    //Trig::release();
+    int k;
+    cin >> k;
 //    double x = 0;
 //    while(true) {
 //        cout << "Enter x: ";

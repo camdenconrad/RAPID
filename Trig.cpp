@@ -10,8 +10,8 @@ namespace RAPID {
 
 
     //6248
-    auto sins = new double[628319];
-    auto coss = new double[628319];
+    auto sins = new short[628319];
+    auto coss = new short[628319];
 
 
     void Trig::release() {
@@ -110,41 +110,53 @@ namespace RAPID {
         }
     }
 
-    double Trig::RSin(double x) {
+    float Trig::RSin(double x) {
         while (x < 0 && x < 6.248) {
-            x += std::numbers::pi;
+            x += 2 * std::numbers::pi;
         }
         while (x > 6.248 && x > 0) {
-            x -= std::numbers::pi;
+            x -= 2 * std::numbers::pi;
         }
-        return sins[(int) (x * 100000)];
+        return (float) sins[(int) (x * 100000)] / (float) 10000.;
     }
 
     double Trig::RCos(double x) {
         while (x < 0 && x < 6.248) {
-            x += std::numbers::pi;
+            x += 2 * std::numbers::pi;
         }
         while (x > 6.248 && x > 0) {
-            x -= std::numbers::pi;
+            x -= 2 * std::numbers::pi;
         }
-        return coss[(int) (x * 100000)];
+        return (float) coss[(int) (x * 100000)] / (float) 10000. ;
     }
 
 
     void Trig::precompute() {
         double x = 0;
 
-        for (int i = 0; i < 628319; i++) {
-            sins[i] = RapidSin(x);
+        for (int i = 0; i < 314159; i++) {
+            sins[i] = RapidSin(x) * 10000;
             x += 0.00001;
         }
 
         x = 0;
-
-        for (int i = 0; i < 628319; i++) {
-            coss[i] = RapidCos(x);
+        for (int i = 314159; i < 628319; i++) {
+            sins[i] = RapidSin(x) * -10000;
             x += 0.00001;
         }
+
+        x = 0;
+        for (int i = 0; i < 314159; i++) {
+            coss[i] = RapidCos(x) * 10000;
+            x += 0.00001;
+        }
+
+        x = 0;
+        for (int i = 314159; i < 628319; i++) {
+            coss[i] = RapidCos(x) * -10000;
+            x += 0.00001;
+        }
+
 
 
     }
